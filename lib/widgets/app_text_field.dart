@@ -45,8 +45,8 @@ class AppTextField extends StatelessWidget {
           hintText: hintText,
           suffixIcon: suffixIcon,
           contentPadding: const EdgeInsets.all(16),
-          filled: true,
-          fillColor: Colors.lightBlueAccent,
+          // filled: true,
+          // fillColor: Colors.lightBlueAccent,
       ),
       onChanged: (value) {
         onChanged(value);

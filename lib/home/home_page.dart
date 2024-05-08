@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/app_validator.dart';
 import 'package:untitled/enums/input_types.dart';
 import 'package:untitled/widgets/app_text_field.dart';
+import 'package:untitled/widgets/custom_dropdown_button.dart';
 import '../di.dart';
 import 'home_validator.dart';
 
@@ -18,16 +19,20 @@ class _HomePageState extends State<HomePage> {
 
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
+  final TextEditingController _dropDownController = TextEditingController();
   final FocusNode _focusNode1 = FocusNode();
   final FocusNode _focusNode2 = FocusNode();
   String _errorText1 = "";
   String _errorText2 = "";
 
 
+  final List<String> cities =["Nahavand", "Tehran","Shiraz","Arak"];
+
   @override
   void dispose() {
     _controller1.dispose();
     _controller2.dispose();
+    _dropDownController.dispose();
     super.dispose();
   }
   @override
@@ -64,6 +69,17 @@ class _HomePageState extends State<HomePage> {
                 inputType: InputTypes.Number,
                 onChanged: (value) {},
               ),
+
+              const SizedBox(
+                height: 8.0,
+              ),
+
+              CustomDropDownButton(
+                  controller: _dropDownController,
+                  list: cities,
+                  label: "Cities"
+              ),
+
               const SizedBox(height: 20.0),
               ElevatedButton(
                   onPressed: () {
