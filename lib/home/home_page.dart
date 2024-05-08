@@ -18,9 +18,18 @@ class _HomePageState extends State<HomePage> {
 
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
+  final FocusNode _focusNode1 = FocusNode();
+  final FocusNode _focusNode2 = FocusNode();
   String _errorText1 = "";
   String _errorText2 = "";
 
+
+  @override
+  void dispose() {
+    _controller1.dispose();
+    _controller2.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -36,6 +45,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               AppTextField(
                 controller: _controller1,
+                focusNode: _focusNode1,
                 errorText: _errorText1,
                 labelText: 'name',
                 hintText: "Enter name",
@@ -44,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                 onChanged: (value) {},
               ),
               const SizedBox(
-                height: 16.0,
+                height: 8.0,
               ),
               AppTextField(
                 controller: _controller2,

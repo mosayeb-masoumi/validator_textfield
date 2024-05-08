@@ -3,32 +3,39 @@ import 'package:flutter/services.dart';
 import 'package:untitled/enums/input_types.dart';
 
 class AppTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String errorText;
+  final TextEditingController? controller;
+  final String? errorText;
   final String labelText;
   final String hintText;
   final Icon? suffixIcon;
+  final Icon? prefixIcon;
   final Function onChanged;
   final InputTypes inputType;
+  final FocusNode? focusNode;
 
   const AppTextField(
       {super.key,
-      required this.controller,
-      required this.errorText,
+      this.controller,
+        this.focusNode,
+      this.errorText,
       required this.labelText,
       required this.hintText,
       this.suffixIcon,
+      this.prefixIcon,
       required this.onChanged,
       required this.inputType});
 
   @override
   Widget build(BuildContext context) {
+
     return TextField(
       controller: controller,
+      focusNode: focusNode,
       decoration: InputDecoration(
           labelText: labelText,
           labelStyle: const TextStyle(color: Colors.black),
           errorText: errorText,
+          errorStyle: const TextStyle(color: Colors.black54),
           border: getBorder(),
           focusedBorder: getBorder(),
           enabledBorder: getBorder(),
@@ -36,8 +43,11 @@ class AppTextField extends StatelessWidget {
           focusedErrorBorder: getBorder(),
           hintStyle: const TextStyle(color: Colors.grey),
           hintText: hintText,
-          suffixIcon: suffixIcon),
-      cursorColor: Colors.blue,
+          suffixIcon: suffixIcon,
+          contentPadding: const EdgeInsets.all(16),
+          filled: true,
+          fillColor: Colors.lightBlueAccent,
+      ),
       onChanged: (value) {
         onChanged(value);
       },
@@ -48,6 +58,9 @@ class AppTextField extends StatelessWidget {
               buildTextInputFormatter(),
             ]
           : null,
+
+      cursorWidth: 2,
+      cursorOpacityAnimates: true,
     );
   }
 
