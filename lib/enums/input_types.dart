@@ -1,0 +1,1 @@
+enum InputTypes { Default, Email, Number, Password, PaymentCard, Multiline }
